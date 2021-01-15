@@ -1,3 +1,9 @@
 /*.tmp
 build/
 .gradle/
+
+# VSCode filuja
+.classpath
+.project
+.settings/
+bin/
