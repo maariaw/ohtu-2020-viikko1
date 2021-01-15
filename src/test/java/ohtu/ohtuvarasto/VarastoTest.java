@@ -125,7 +125,7 @@ public class VarastoTest {
     public void saldoaSuurempiOttaminenNollaaSaldon() {
         varasto.lisaaVarastoon(6.6);
         varasto.otaVarastosta(7.7);
-        assertEquals(6.6, varasto.getSaldo(), vertailuTarkkuus);
+        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
     }
     
     @Test
