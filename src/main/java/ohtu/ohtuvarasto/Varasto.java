@@ -10,52 +10,21 @@ public class Varasto {
     public Varasto(double tilavuus) {  // tilavuus on annettava
         if (tilavuus > 0.0) {
             this.tilavuus = tilavuus;
-        } else // virheellinen, nollataan
-        {
+        } else { // virheellinen, nollataan
             this.tilavuus = 0.0;  // => käyttökelvoton varasto
         }
         saldo = 0;     // oletus: varasto on tyhjä
     }
 
     public Varasto(double tilavuus, double alkuSaldo) { // kuormitetaan
-        // Rikotaan sisäkkäisten if-blokkien checkstyle
-        if (tilavuus > 0.0) {
-            this.tilavuus = tilavuus;
-            if (alkuSaldo <= tilavuus) {
-                if (alkuSaldo >= 0.0) {
-                    this.saldo = alkuSaldo;
-                } else {
-                    this.saldo = 0.0;
-                }
-            } else {
-                this.saldo = tilavuus;
-            }
+        tilavuus = Math.max(tilavuus, 0);
+        alkuSaldo = Math.max(alkuSaldo, 0);
+        this.tilavuus = tilavuus;
+        if (alkuSaldo <= tilavuus) { // mahtuu
+            this.saldo = alkuSaldo;
         } else {
-            this.tilavuus = 0.0;
-            this.saldo = 0.0;
+            this.saldo = tilavuus;  // täyteen ja ylimäärä hukkaan!
         }
-
-        // Rikotaan for-loopit ja sisennys
-        for (int i = 0; i < 2; i++) {
-        for (int j = 0; j < i; j++) {
-        this.saldo += j;
-        }
-        }
-
-        // if (tilavuus > 0.0) {
-        //     this.tilavuus = tilavuus;
-        // } else // virheellinen, nollataan
-        // {
-        //     this.tilavuus = 0.0;  // => käyttökelvoton varasto
-        // }
-        // if (alkuSaldo < 0.0) {
-        //     this.saldo = 0.0;
-        // } else if (alkuSaldo <= tilavuus) // mahtuu
-        // {
-        //     this.saldo = alkuSaldo;
-        // } else {
-        //     this.saldo = tilavuus;  // täyteen ja ylimäärä hukkaan!
-        // }
     }
 
     // --- ottavat aksessorit eli getterit: ---
@@ -73,12 +42,10 @@ public class Varasto {
 
     // --- asettavat aksessorit eli setterit: ---
     public void lisaaVarastoon(double maara) {
-        if (maara < 0) // virhetilanteessa voidaan tehdä 
-        {
+        if (maara < 0) { // virhetilanteessa voidaan tehdä
             return;       // tällainen pikapoistuminenkin!
         }
-        if (maara <= paljonkoMahtuu()) // omia aksessoreita voi kutsua
-        {
+        if (maara <= paljonkoMahtuu()) { // omia aksessoreita voi kutsua
             saldo = saldo + maara;          // ihan suoraan sellaisinaan
         } else {
             saldo = tilavuus;  // täyteen ja ylimäärä hukkaan!
@@ -86,8 +53,7 @@ public class Varasto {
     }
 
     public double otaVarastosta(double maara) {
-        if (maara < 0) // virhetilanteessa voidaan tehdä 
-        {
+        if (maara < 0) { // virhetilanteessa voidaan tehdä
             return 0.0;   // tällainen pikapoistuminenkin!
         }
         if (maara > saldo) {          // annetaan mitä voidaan
