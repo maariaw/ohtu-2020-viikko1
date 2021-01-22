@@ -5,12 +5,10 @@ import ohtu.ohtuvarasto.Varasto;
 public class Main {
 
     public static void main(String[] args) {
-
         Varasto mehua = new Varasto(100.0);
         Varasto olutta = new Varasto(100.0, 20.2);
 
         // Tämä ehkä demonstroi, miksi joskus Checkstyle-säännöt saavat aikaan vaikeammin luettavaa koodia. Tietynlaiset Mainit kannattaa jättää ulkopuolelle.
-
         System.out.println("Luonnin jälkeen:\nMehuvarasto: " + mehua + "\nOlutvarasto: " + olutta + "\nOlutgetterit:\ngetSaldo()     = " + olutta.getSaldo() + "\ngetTilavuus    = " + olutta.getTilavuus() + "\npaljonkoMahtuu = " + olutta.paljonkoMahtuu() + "\nMehusetterit:\nLisätään 50.7");
         mehua.lisaaVarastoon(50.7);
         System.out.println("Mehuvarasto: " + mehua + "\nOtetaan 3.14");
