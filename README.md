@@ -4,3 +4,4 @@
 [![codecov](https://codecov.io/gh/maariaw/ohtu-2021-viikko1/branch/main/graph/badge.svg?token=MW7XRW4L1Q)](https://codecov.io/gh/maariaw/ohtu-2021-viikko1)
 
 [Kurssin päärepositorio](https://github.com/maariaw/ohtu-2021)
+
